@@ -1,6 +1,9 @@
 $sourceDir = "src"
 $targetDir = "dist"
 
+$htmlPath = "/"
+$targetHtmlPath = "/"
+
 Write-Host "Copying to target folder..."
 Remove-Item –Path "./$targetDir" -Recurse -ErrorAction Ignore
 Copy-Item –Path "./$sourceDir" -Destination "./$targetDir" -Recurse
@@ -15,6 +18,10 @@ foreach ($asset in $assets) {
     $relativeAssetPath = (Resolve-Path -Relative $asset).TrimStart('.').Replace('\', '/').TrimStart('/').Substring($targetDir.Length)
     # Add the hash to the HTML friendly relative path
     $relativeAssetPathHashed = $relativeAssetPath.Remove($relativeAssetPath.Length - $asset.Extension.Length) + "-$assetHash" + $asset.Extension
+
+    # Update the start of the paths
+    $relativeAssetPath = $htmlPath + $relativeAssetPath.TrimStart('/')
+    $relativeAssetPathHashed = $targetHtmlPath + $relativeAssetPathHashed.TrimStart('/')
 
     # Rename the file to be hashed
     $assetPathHashed = $asset.FullName.Remove($asset.FullName.Length - $asset.Extension.Length) + "-$assetHash" + $asset.Extension
