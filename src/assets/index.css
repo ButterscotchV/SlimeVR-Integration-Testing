@@ -1,0 +1,23 @@
+@font-face {
+    font-family: Ubuntu;
+    src: local("Ubuntu"), url(/assets/Ubuntu-Regular.ttf) format("truetype");
+}
+
+:root {
+    font-family: Ubuntu, Inter, Avenir, Helvetica, Arial, sans-serif;
+    color-scheme: light dark;
+    width: fit-content;
+}
+
+fieldset {
+    margin: 6px;
+    padding: 6px 10px;
+    height: fit-content;
+    border-radius: 8px;
+}
+
+.wrapped {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
