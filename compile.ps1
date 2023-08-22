@@ -59,6 +59,11 @@ foreach ($asset in $markdownAssets) {
             $header = $line.Substring(1)
             $headerLevelDiff = $headerLevel - $header.Length
 
+            if ($headerLevelDiff -le 0) {
+                # Targeting higher headers than the current will break and going to the same one is useless
+                continue
+            }
+
             # Close each header over the difference
             foreach ($i in 1..$headerLevelDiff) {
                 $htmlContent += "</fieldset>"
