@@ -1,0 +1,81 @@
+# General functionality
+
+## Trackers
+Trackers can connect
+Trackers rotate properly within the server
+
+## SteamVR
+SteamVR driver can connect
+Trackers function properly within SteamVR
+
+## Feeder app
+Feeder app can connect
+Feeder app sends controller data
+
+# Setup wizard
+Setting WiFi
+
+## Tracker assignment
+Manual assign
+Tap to assign
+
+## Mounting calibration
+Manual orientation
+Automatic orientation (mounting reset)
+
+## Body proportions
+Manual body proportions (with ratios)
+Manual body proportions (without ratios)
+Automatic body proportions
+Export proportions
+
+# Home
+Clear reset mounting
+Record BVH
+Pause tracking
+Clear drift compensation
+
+# Tracker mechanics
+
+## Filtering
+No filtering
+Smoothing
+Prediction
+
+/#
+Drift compensation
+
+# Tracking settings
+Skating correction
+Floor clip
+Foot plant
+Toe snap
+Force arms from HMD
+
+## Skeleton toggles
+Extended spine model
+Extended pelvis model
+Extended knee model
+
+# Misc settings
+Vive emulation (non-essential)
+Mocap mode
+
+# Gesture control
+Tap to yaw reset
+Tap to full reset
+Tap to reset mounting
+
+# Interface
+Reset sounds
+Developer mode switching
+Font switching
+Language switching
+
+# OSC
+OSC router
+VRChat OSC trackers
+VMC
+
+# Serial
+Serial console

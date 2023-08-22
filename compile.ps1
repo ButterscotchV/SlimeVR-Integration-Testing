@@ -8,6 +8,88 @@ Write-Host "Copying to target folder..."
 Remove-Item –Path "./$targetDir" -Recurse -ErrorAction Ignore
 Copy-Item –Path "./$sourceDir" -Destination "./$targetDir" -Recurse
 
+Write-Host "Compiling markdown checklist(s)..."
+$markdownAssets = Get-ChildItem –Path "./$targetDir" -File -Include @("*.checkmd") –Recurse
+foreach ($asset in $markdownAssets) {
+    $markdownContent = Get-Content -Path $asset
+
+    $htmlContent = ""
+    $testId = 0
+    $headerLevel = 0
+    foreach ($line in $markdownContent.Split("`n")) {
+        $line = $line.Trim()
+        if ($line.Length -le 0) {
+            continue
+        }
+
+        # Start of a new header
+        if ($line.StartsWith("#")) {
+            $headerEnd = $line.IndexOf(" ")
+            if ($headerEnd -le 0) {
+                continue
+            }
+
+            $header = $line.Remove($headerEnd)
+            # +1 to remove space
+            $headerLabel = $line.Substring($headerEnd + 1)
+
+            if ($header.Length -gt $headerLevel) {
+                # Increment the actual header level
+                $headerLevel++
+            }
+            else {
+                # If there's 0 difference, that means it's a new section on the same level, so we need to add 1 to handle it
+                $headerLevelDiff = ($headerLevel - $header.Length) + 1
+
+                # Close each header over the difference
+                foreach ($i in 1..$headerLevelDiff) {
+                    $htmlContent += "</fieldset>"
+                }
+
+                # Now the header level is what was defined
+                $headerLevel = $header.Length
+            }
+
+            # Write the header
+            $htmlContent += "<fieldset><legend>$headerLabel</legend>"
+        }
+        # Return to header level (a little hacky but required for formatting)
+        elseif ($line.StartsWith("/#")) {
+            # Remove "/"
+            $header = $line.Substring(1)
+            $headerLevelDiff = $headerLevel - $header.Length
+
+            # Close each header over the difference
+            foreach ($i in 1..$headerLevelDiff) {
+                $htmlContent += "</fieldset>"
+            }
+        }
+        # New checkbox in current header
+        else {
+            $htmlContent += "<div><input type=""checkbox"" id=""test$testId"" name=""test$testId"" /><label for=""test$testId"">$line</label></div>"
+            $testId++
+        }
+    }
+
+    # Close any remaining headers
+    foreach ($i in 1..$headerLevel) {
+        $htmlContent += "</fieldset>"
+    }
+
+    # Replace requested sections with the compiled markdown
+    $replaceToken = "{checklist}$((Resolve-Path -Relative $asset).TrimStart('.').Replace('\', '/').TrimStart('/').Substring($targetDir.Length)){/checklist}"
+    Write-Host "Replacing ""$replaceToken"" with compiled markdown:"
+
+    $sourceFiles = Get-ChildItem –Path "./$targetDir" -File -Include @("*.html", "*.htm", "*.css", "*.js", "*.ts") –Recurse
+    foreach ($sourceFile in $sourceFiles) {
+        Write-Host "  > Updating ""$sourceFile""..."
+        (Get-Content -Path $sourceFile).Replace($replaceToken, $htmlContent) | Set-Content -Path $sourceFile
+    }
+
+    # The markdown source is no longer needed, delete it
+    $asset.Delete()
+}
+
 Write-Host "Hashing static assets..."
 $assets = Get-ChildItem –Path "./$targetDir/assets" -File –Recurse
 foreach ($asset in $assets) {
