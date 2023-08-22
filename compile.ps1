@@ -63,6 +63,9 @@ foreach ($asset in $markdownAssets) {
             foreach ($i in 1..$headerLevelDiff) {
                 $htmlContent += "</fieldset>"
             }
+
+            # Now the header level is what was defined
+            $headerLevel = $header.Length
         }
         # New checkbox in current header
         else {
