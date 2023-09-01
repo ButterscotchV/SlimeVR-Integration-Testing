@@ -11,6 +11,7 @@ Trackers function properly within SteamVR
 ## Feeder app
 Feeder app can connect
 Feeder app sends controller data
+Feeder app controller bindings
 
 # Setup wizard
 Setting WiFi
@@ -79,3 +80,7 @@ VMC
 
 # Serial
 Serial console
+"Reboot" button
+"Factory Reset" button (optional)
+"Get Infos" button
+Serial popup on tracker connect
