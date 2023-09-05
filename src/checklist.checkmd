@@ -29,6 +29,7 @@ Manual body proportions (with ratios)
 Manual body proportions (without ratios)
 Automatic body proportions
 Export proportions
+Import proportions
 
 # Home
 Clear reset mounting
@@ -51,12 +52,28 @@ Skating correction
 Floor clip
 Foot plant
 Toe snap
+Feet mounting reset
 Force arms from HMD
+
+## Arms mounting
+Back
+Forward
+T-pose (up)
+T-pose (down)
 
 ## Skeleton toggles
 Extended spine model
 Extended pelvis model
 Extended knee model
+
+## Skeleton values
+Waist from chest-hip
+Waist from chest-legs
+Hip from chest-legs
+Hip from waist-legs
+Hip yaw-roll legs
+Knee tracker yaw-roll ankle
+Knee yaw-roll ankle
 
 # Misc settings
 Vive emulation (non-essential)
