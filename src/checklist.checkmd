@@ -3,6 +3,7 @@
 ## Trackers
 Trackers can connect
 Trackers rotate properly within the server
+Status (OK, Timeout, Disconnected)
 
 ## SteamVR
 SteamVR driver can connect
