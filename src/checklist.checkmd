@@ -37,6 +37,11 @@ Clear reset mounting
 Record BVH
 Pause tracking
 Clear drift compensation
+Skeleton preview
+
+# SteamVR
+Toggling SteamVR trackers
+Automatic tracker assignment
 
 # Tracker mechanics
 
@@ -47,6 +52,8 @@ Prediction
 
 /#
 Drift compensation
+Yaw reset smooth time
+Save mounting reset
 
 # Tracking settings
 Skating correction
