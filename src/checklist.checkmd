@@ -5,6 +5,10 @@ Trackers can connect
 Trackers rotate properly within the server
 Status (OK, Timeout, Disconnected)
 
+### Unknown device popup (New tracker found)
+Connect
+Ignore
+
 ## SteamVR
 SteamVR driver can connect
 Trackers function properly within SteamVR
@@ -38,6 +42,11 @@ Record BVH
 Pause tracking
 Clear drift compensation
 Skeleton preview
+
+# Tracker menu (Tracker settings)
+Allow drift compensation
+Tracker name
+Forget tracker
 
 # SteamVR
 Toggling SteamVR trackers
@@ -108,4 +117,5 @@ Serial console
 "Reboot" button
 "Factory Reset" button (optional)
 "Get Infos" button
+"Get WiFi Scan" button
 Serial popup on tracker connect
