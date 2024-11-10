@@ -11,12 +11,12 @@ Copy-Item –Path "./$sourceDir" -Destination "./$targetDir" -Recurse
 Write-Host "Compiling markdown checklist(s)..."
 $markdownAssets = Get-ChildItem –Path "./$targetDir" -File -Include @("*.checkmd") –Recurse
 foreach ($asset in $markdownAssets) {
-    $markdownContent = Get-Content -Path $asset
-
     $htmlContent = ""
     $testId = 0
     $headerLevel = 0
-    foreach ($line in $markdownContent.Split("`n")) {
+
+    $markdownContent = Get-Content -Path $asset
+    foreach ($line in $markdownContent) {
         $line = $line.Trim()
         if ($line.Length -le 0) {
             continue
@@ -74,7 +74,7 @@ foreach ($asset in $markdownAssets) {
         }
         # New checkbox in current header
         else {
-            $htmlContent += "<div><input type=""checkbox"" id=""test$testId"" name=""test$testId"" /><label for=""test$testId"">$line</label></div>"
+            $htmlContent += "<div><input type=""checkbox"" id=""test$testId"" name=""test$testId""/><label for=""test$testId"">$line</label></div>"
             $testId++
         }
     }
@@ -91,7 +91,7 @@ foreach ($asset in $markdownAssets) {
     $sourceFiles = Get-ChildItem –Path "./$targetDir" -File -Include @("*.html", "*.htm", "*.css", "*.js", "*.ts") –Recurse
     foreach ($sourceFile in $sourceFiles) {
         Write-Host "  > Updating ""$sourceFile""..."
-        (Get-Content -Path $sourceFile).Replace($replaceToken, $htmlContent) | Set-Content -Path $sourceFile
+        (Get-Content -Path $sourceFile -Raw).Replace($replaceToken, $htmlContent) | Set-Content -Path $sourceFile
     }
 
     # The markdown source is no longer needed, delete it
@@ -122,8 +122,15 @@ foreach ($asset in $assets) {
     $sourceFiles = Get-ChildItem –Path "./$targetDir" -File -Include @("*.html", "*.htm", "*.css", "*.js", "*.ts") –Recurse
     foreach ($sourceFile in $sourceFiles) {
         Write-Host "  > Updating ""$sourceFile""..."
-        (Get-Content -Path $sourceFile).Replace($relativeAssetPath, $relativeAssetPathHashed) | Set-Content -Path $sourceFile
+        (Get-Content -Path $sourceFile -Raw).Replace($relativeAssetPath, $relativeAssetPathHashed) | Set-Content -Path $sourceFile
     }
+}
+
+Write-Host "Minifying HTML..."
+$minifyFiles = Get-ChildItem –Path "./$targetDir" -File -Include @("*.html", "*.htm") –Recurse
+foreach ($minifyFile in $minifyFiles) {
+    Write-Host "  > Updating ""$minifyFile""..."
+    (Get-Content -Path $minifyFile -Raw).ReplaceLineEndings("").Replace("    ", "") | Set-Content -Path $minifyFile
 }
 
 Write-Host "Done!"

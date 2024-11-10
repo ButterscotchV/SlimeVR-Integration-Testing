@@ -15,7 +15,30 @@
     <meta property="og:image" content="https://slimevr-testing.bscotch.ca/icon512.png">
     <meta property="twitter:image" content="https://slimevr-testing.bscotch.ca/icon512.png">
     <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="stylesheet" href="/assets/index.css">
+    <style>
+        @font-face {
+            font-family: Ubuntu;
+            src: local("Ubuntu"), url(/assets/Ubuntu-Regular.ttf) format("truetype");
+        }
+
+        :root {
+            font-family: Ubuntu, Inter, Avenir, Helvetica, Arial, sans-serif;
+            color-scheme: light dark;
+            width: fit-content;
+        }
+
+        fieldset {
+            margin: 6px;
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .wrapped {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+    </style>
 </head>
 
 <body>
