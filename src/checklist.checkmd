@@ -30,6 +30,8 @@ Manual orientation
 Automatic orientation (mounting reset)
 
 ## Body proportions
+Scaled body proportions (manual)
+Scaled body proportions (automatic)
 Manual body proportions (with ratios)
 Manual body proportions (without ratios)
 Automatic body proportions
@@ -37,20 +39,28 @@ Export proportions
 Import proportions
 
 # Home
+Reset feet mounting
+Reset fingers mounting
 Clear reset mounting
 Record BVH
 Pause tracking
-Clear drift compensation
 Skeleton preview
 
 # Tracker menu (Tracker settings)
-Allow drift compensation
 Tracker name
 Forget tracker
+
+## Firmware update
+Update checking
+Firmware updating
 
 # SteamVR
 Toggling SteamVR trackers
 Automatic tracker assignment
+
+# Stay Aligned
+Setup Stay Aligned
+Hide adjustment
 
 # Tracker mechanics
 
@@ -60,17 +70,18 @@ Smoothing
 Prediction
 
 /#
-Drift compensation
 Yaw reset smooth time
 Save mounting reset
+Magnetometer toggle
 
 # Tracking settings
 Skating correction
 Floor clip
 Foot plant
 Toe snap
-Feet mounting reset
 Force arms from HMD
+Reset HMD pitch
+Force feet mounting reset
 
 ## Arms mounting
 Back
@@ -92,8 +103,7 @@ Hip yaw-roll legs
 Knee tracker yaw-roll ankle
 Knee yaw-roll ankle
 
-# Misc settings
-Vive emulation (non-essential)
+/#
 Mocap mode
 
 # Gesture control
@@ -102,21 +112,43 @@ Tap to full reset
 Tap to reset mounting
 
 # Interface
-Reset sounds
+
+## Notifications
+Serial device detection
+Feedback sound
+Feedback sound volume
+Connected trackers warning on exit
+
+## Behavior
+Minimize to system tray
+Share activity on Discord
 Developer mode switching
+Directory to save BVH recordings
+
+## Appearance
+Use native decorations
+Theme switching
+Show "Setup Wizard" on navigation bar
 Font switching
+Font scaling
 Language switching
 
 # OSC
 OSC router
-VRChat OSC trackers
-VMC
-VRM Drag & Drop
 
-## OSCQuery
-OSCQuery connects
+## VRChat OSC Trackers
+VRChat OSC trackers connect to VRChat
+
+### OSCQuery
+Doesn't connect when not enabled
+OSCQuery connects to VRChat (IP unset)
 Headset tracker is received
 Wrist trackers are received
+
+## VMC
+VMC can connect
+VMC tracks correctly
+VRM drag & drop
 
 # Serial
 Serial console
@@ -124,4 +156,13 @@ Serial console
 "Factory Reset" button (optional)
 "Get Infos" button
 "Get WiFi Scan" button
-Serial popup on tracker connect
+
+# DIY Firmware Tool
+Loads at all
+Able to build official firmware (optional)
+Serial flashing
+OTA flashing
+
+# VRChat Config Warnings
+Loads settings from VRChat
+Mute/Unmute works
